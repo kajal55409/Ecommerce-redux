@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
-  Alert
+  Alert,
 } from "react-native";
 import Header from "../Components/Header";
 import Colors from "../Utils/Colors";
@@ -30,33 +30,31 @@ const Cart_screen = () => {
   const handleIncrase = (item) => {
     dispatch(increaseQuantity(item));
   };
-const handleDecrase = (item) => {
-  if (item.quantity === 1) {
-    return showConfirmDialog(item);
-  }
-  dispatch(decreaseQuantity(item));
-};
-    useEffect(() => {
-      const calculatedTotalPrice = cart.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-      );
+  const handleDecrase = (item) => {
+    if (item.quantity === 1) {
+      return showConfirmDialog(item);
+    }
+    dispatch(decreaseQuantity(item));
+  };
+  useEffect(() => {
+    const calculatedTotalPrice = cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
 
-      setSubTotalPrice(calculatedTotalPrice);
-    }, [cart]);
+    setSubTotalPrice(calculatedTotalPrice);
+  }, [cart]);
 
-    useEffect(() => {
-      const TotalPrice = subTotal + Delivery;
-      setTotalPrice(TotalPrice);
-    }, [subTotal, cart]);
-
+  useEffect(() => {
+    const TotalPrice = subTotal + Delivery;
+    setTotalPrice(TotalPrice);
+  }, [subTotal, cart]);
 
   const showConfirmDialog = (item) => {
-    
     return Alert.alert(
       "Reomve Item",
       "Are you sure have to remove this item?",
-      
+
       [
         {
           text: "Yes",
@@ -69,9 +67,7 @@ const handleDecrase = (item) => {
           onPress: () => {},
         },
       ]
-      
     );
-   
   };
 
   return (
@@ -239,7 +235,6 @@ const handleDecrase = (item) => {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-  
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
